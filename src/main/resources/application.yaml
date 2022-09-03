@@ -1,0 +1,47 @@
+server.port: 8081
+
+spring:
+  application:
+    name: vet-appointment-service
+  profiles:
+    active: staging
+
+## DataSource properties
+  jpa:
+    hibernate.ddl-auto: update
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+          batch_size: 100
+  datasource:
+    hikari:
+      connection-timeout: 50000
+      idle-timeout: 300000
+      max-lifetime: 900000
+      maximum-pool-size: 25
+      minimum-idle: 5
+      pool-name: ConnPool
+     # connection-test-query: select 1 from TBL_NAME_BASICS
+
+      data-source-properties:
+       cachePrepStmts: true
+       prepStmtCacheSize: 250
+       prepStmtCacheSqlLimit: 2048
+       useServerPrepStmts: true
+       useLocalSessionState: true
+       rewriteBatchedStatements: true
+       cacheResultSetMetadata: true
+       cacheServerConfiguration: true
+       elideSetAutoCommits: true
+       maintainTimeStats: false
+
+management.endpoint.metrics.enabled: true
+management.endpoint.prometheus.enabled: true
+management.endpoints.web.exposure.include: prometheus,metrics
+
+logging.level.com.zaxxer.hikari.HikariConfig: DEBUG
+logging.level.com.zaxxer.hikari: TRACE
+
