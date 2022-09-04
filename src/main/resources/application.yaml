@@ -1,11 +1,12 @@
 server.port: 8081
+application.title: Vetstoria-Appointment-Service
+application.version: 1.0.0
 
 spring:
   application:
     name: vet-appointment-service
   profiles:
-    active: staging
-
+    active: dev
 ## DataSource properties
   jpa:
     hibernate.ddl-auto: update
@@ -17,6 +18,9 @@ spring:
           time_zone: UTC
           batch_size: 100
   datasource:
+    url: jdbc:mysql://localhost:3306/imdb;DB_CLOSE_ON_EXIT=FALSE
+    username: root
+    password: root
     hikari:
       connection-timeout: 50000
       idle-timeout: 300000
@@ -25,7 +29,6 @@ spring:
       minimum-idle: 5
       pool-name: ConnPool
      # connection-test-query: select 1 from TBL_NAME_BASICS
-
       data-source-properties:
        cachePrepStmts: true
        prepStmtCacheSize: 250
@@ -42,6 +45,6 @@ management.endpoint.metrics.enabled: true
 management.endpoint.prometheus.enabled: true
 management.endpoints.web.exposure.include: prometheus,metrics
 
-logging.level.com.zaxxer.hikari.HikariConfig: DEBUG
-logging.level.com.zaxxer.hikari: TRACE
+#logging.level.com.zaxxer.hikari.HikariConfig: DEBUG
+#logging.level.com.zaxxer.hikari: TRACE
 
