@@ -11,7 +11,7 @@ public class ProviderTwoPaymentServiceImpl implements PaymentService<ProviderTwo
 
     @Override
     public ProviderTwoPaymentResponse pay(ProviderTwoPaymentRequest request) {
-        // To do payment logic with provider 2 ...
+        // TODO payment logic with provider 2 ...
         return new ProviderTwoPaymentResponse();
     }
 

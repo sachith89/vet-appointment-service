@@ -10,7 +10,7 @@ public class ProviderThreePaymentServiceImpl implements PaymentService<ProviderT
 
     @Override
     public ProviderThreePaymentResponse pay(ProviderThreePaymentRequest request) {
-        // To do payment logic with provider 3 ...
+        // TODO payment logic with provider 3 ...
         return new ProviderThreePaymentResponse();
     }
 

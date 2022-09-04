@@ -1,4 +1,4 @@
-package com.vetstoria.appointments.dto;
+package com.vetstoria.appointments.model.request;
 
 import lombok.*;
 
@@ -14,7 +14,7 @@ import javax.validation.constraints.Pattern;
 @Builder
 @ToString
 @EqualsAndHashCode
-public class ClientDTO {
+public class ClientRequest {
 
     private Long clientId;
 

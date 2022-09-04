@@ -1,6 +1,10 @@
 package com.vetstoria.appointments.controller;
 
-import com.vetstoria.appointments.dto.AppointmentDTO;
+import com.vetstoria.appointments.model.request.AppointmentRequest;
+import com.vetstoria.appointments.model.request.PaymentRequest;
+import com.vetstoria.appointments.model.request.ProviderOnePaymentRequest;
+import com.vetstoria.appointments.model.response.PaymentResponse;
+import com.vetstoria.appointments.paymentgateway.gateway.PaymentGateway;
 import com.vetstoria.appointments.service.AppointmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,9 +22,10 @@ import javax.validation.Valid;
 public class AppointmentController {
 
     private final AppointmentService appointmentService;
+    private final PaymentGateway<PaymentResponse, PaymentRequest> paymentGateway;
 
     @PostMapping("/")
-    public ResponseEntity<AppointmentDTO> saveAppointment(@RequestBody @Valid AppointmentDTO appointmentDTO) {
+    public ResponseEntity<AppointmentRequest> saveAppointment(@RequestBody @Valid AppointmentRequest appointmentDTO) {
         return new ResponseEntity(appointmentService.save(appointmentDTO), HttpStatus.CREATED);
     }
 
@@ -29,5 +34,11 @@ public class AppointmentController {
     //TODO: cancel appointments
     //TODO: get all appointments
     //TODO: get single appointments
+
+
+    @PostMapping("/pay")
+    public ResponseEntity<PaymentResponse> processPayment(@RequestBody ProviderOnePaymentRequest paymentRequest) {
+        return ResponseEntity.ok(paymentGateway.makePayment(paymentRequest));
+    }
 
 }

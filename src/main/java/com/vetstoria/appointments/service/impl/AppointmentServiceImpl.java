@@ -1,9 +1,10 @@
 package com.vetstoria.appointments.service.impl;
 
-import com.vetstoria.appointments.dto.AppointmentDTO;
+import com.vetstoria.appointments.model.request.AppointmentRequest;
 import com.vetstoria.appointments.service.AppointmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Clock;
 import java.time.LocalDateTime;
@@ -15,10 +16,11 @@ public class AppointmentServiceImpl implements AppointmentService {
     private final Clock clock = Clock.systemDefaultZone();
 
     @Override
-    public AppointmentDTO save(AppointmentDTO appointmentDTO) {
+    @Transactional
+    public AppointmentRequest save(AppointmentRequest appointmentRequest) {
 
-        appointmentDTO.setDateTime(LocalDateTime.now(clock));
-
+        appointmentRequest.setDateTime(LocalDateTime.now(clock));
+        System.out.println(appointmentRequest);
         return null;
     }
 }

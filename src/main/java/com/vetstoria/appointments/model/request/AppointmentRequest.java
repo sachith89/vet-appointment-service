@@ -1,9 +1,9 @@
-package com.vetstoria.appointments.dto;
+package com.vetstoria.appointments.model.request;
 
 import lombok.*;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Getter
 @Setter
@@ -12,13 +12,14 @@ import java.util.List;
 @Builder
 @ToString
 @EqualsAndHashCode
-public class AppointmentDTO {
+public class AppointmentRequest {
 
     private Long locationId;
     private LocalDateTime dateTime;
     private String bookingSource;
-    private ClientDTO client;
-    private List<PaymentDTO> payment;
-    private PetDTO pet;
+
+    @Valid
+    private ClientRequest client;
+    private PetRequest pet;
 
 }

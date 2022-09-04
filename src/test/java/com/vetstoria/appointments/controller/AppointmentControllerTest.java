@@ -3,9 +3,9 @@ package com.vetstoria.appointments.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.vetstoria.appointments.dto.AppointmentDTO;
-import com.vetstoria.appointments.dto.ClientDTO;
-import com.vetstoria.appointments.dto.PetDTO;
+import com.vetstoria.appointments.model.request.AppointmentRequest;
+import com.vetstoria.appointments.model.request.ClientRequest;
+import com.vetstoria.appointments.model.request.PetRequest;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,7 +32,7 @@ class AppointmentControllerTest {
     @Test
     public void shouldReturnDefaultMessage() throws Exception {
         this.mockMvc.perform(get("/api/v1/user"))
-                .andDo(print())
+               // .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Hello")));
     }
@@ -40,15 +40,20 @@ class AppointmentControllerTest {
     @Test
     @DisplayName("Should Return Error Message When Email Is Incorrect")
     public void shouldReturnErrorMessageWhenEmailIsIncorrect() throws Exception {
-        PetDTO petDTO = PetDTO.builder()
-
+        PetRequest petDTO = PetRequest.builder()
+                .petName("Rocky")
+                .breed("Great Dane")
+                .age(2)
                 .build();
 
-        ClientDTO clientDTO = ClientDTO.builder()
-
+        ClientRequest clientDTO = ClientRequest.builder()
+                .firstName("Sachith")
+                .lastName("Lakmal")
+                .email("sachith#gmail.com")
+                .contactNo("0771176372")
                 .build();
 
-        AppointmentDTO appointmentDTO = AppointmentDTO.builder()
+        AppointmentRequest appointmentDTO = AppointmentRequest.builder()
                 .client(clientDTO)
                 .pet(petDTO)
                 .build();
@@ -60,10 +65,10 @@ class AppointmentControllerTest {
         String requestJson = ow.writeValueAsString(appointmentDTO);
 
         this.mockMvc.perform(
-                        post("/api/v1/user")
+                        post("/api/v1/appointments/")
                                 .contentType(new MediaType(MediaType.APPLICATION_JSON))
                                 .content(requestJson))
-                .andDo(print())
+              //  .andDo(print())
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.errors", hasSize(1)))
                 .andExpect(jsonPath("$.errors[*]", is(Matchers.containsInAnyOrder(Matchers.is("Invalid Email")))));
