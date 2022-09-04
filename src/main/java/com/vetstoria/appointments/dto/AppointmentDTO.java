@@ -14,7 +14,7 @@ import java.util.List;
 @EqualsAndHashCode
 public class AppointmentDTO {
 
-    private String locationId;
+    private Long locationId;
     private LocalDateTime dateTime;
     private String bookingSource;
     private ClientDTO client;

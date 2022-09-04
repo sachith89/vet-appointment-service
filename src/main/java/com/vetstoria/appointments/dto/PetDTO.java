@@ -11,7 +11,7 @@ import lombok.*;
 @EqualsAndHashCode
 public class PetDTO {
 
-    private String petId;
+    private Long petId;
     private String petName;
     private String petType;
     private String breed;

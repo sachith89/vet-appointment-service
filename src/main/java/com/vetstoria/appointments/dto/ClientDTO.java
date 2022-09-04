@@ -16,7 +16,7 @@ import javax.validation.constraints.Pattern;
 @EqualsAndHashCode
 public class ClientDTO {
 
-    private String clientId;
+    private Long clientId;
 
     @NotBlank(message = "Invalid firstName : Cannot be empty")
     @NotNull(message = "Invalid firstName : Cannot be NULL")

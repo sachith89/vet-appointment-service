@@ -2,6 +2,8 @@ package com.vetstoria.appointments.dto;
 
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -11,8 +13,8 @@ import lombok.*;
 @EqualsAndHashCode
 public class PaymentDTO {
 
-    private String paymentId;
+    private Long paymentId;
     private String paymentType;
-    private String amount;
+    private BigDecimal amount;
 
 }

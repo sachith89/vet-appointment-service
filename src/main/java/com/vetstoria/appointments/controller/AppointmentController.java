@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.time.Clock;
-import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/api/v1/appointments")
