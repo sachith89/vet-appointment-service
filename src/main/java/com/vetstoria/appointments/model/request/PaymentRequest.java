@@ -3,13 +3,11 @@ package com.vetstoria.appointments.model.request;
 
 import com.vetstoria.appointments.model.PaymentProviderType;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
-public abstract class PaymentRequest {
+import java.math.BigDecimal;
+
+public interface PaymentRequest {
     // any common fields
+    PaymentProviderType getPaymentProviderType();
 
-    @NotBlank(message = "Invalid PaymentProviderType : Cannot be empty")
-    @NotNull(message = "Invalid PaymentProviderType : Cannot be NULL")
-    public abstract PaymentProviderType getPaymentProviderType();
 }

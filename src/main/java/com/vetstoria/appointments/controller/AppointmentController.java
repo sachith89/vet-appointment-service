@@ -22,7 +22,6 @@ import javax.validation.Valid;
 public class AppointmentController {
 
     private final AppointmentService appointmentService;
-    private final PaymentGateway<PaymentResponse, PaymentRequest> paymentGateway;
 
     @PostMapping("/")
     public ResponseEntity<AppointmentRequest> saveAppointment(@RequestBody @Valid AppointmentRequest appointmentDTO) {
@@ -36,9 +35,5 @@ public class AppointmentController {
     //TODO: get single appointments
 
 
-    @PostMapping("/pay")
-    public ResponseEntity<PaymentResponse> processPayment(@RequestBody ProviderOnePaymentRequest paymentRequest) {
-        return ResponseEntity.ok(paymentGateway.makePayment(paymentRequest));
-    }
 
 }
