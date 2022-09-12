@@ -1,10 +1,12 @@
 package com.vetstoria.appointments.controller;
 
+import com.vetstoria.appointments.model.dto.AppointmentDto;
 import com.vetstoria.appointments.model.dto.PaymentDto;
 import com.vetstoria.appointments.model.dto.RefundDto;
 import com.vetstoria.appointments.service.PaymentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,9 +27,11 @@ public class PaymentController {
     }
 
     @PostMapping("refund")
-    public ResponseEntity<RefundDto> pay(RefundDto refundDto) {
-        refundDto.setRefundId(UUID.randomUUID().toString());
-        return ResponseEntity.ok(paymentService.refund(refundDto));
+    public ResponseEntity<RefundDto> pay(AppointmentDto appointmentDto) {
+        if(!StringUtils.hasText(appointmentDto.getAppointmentId())){
+            //throw exception and notify user that appointment id cannot be empty
+        }
+        return ResponseEntity.ok(paymentService.refund(appointmentDto));
     }
 
 
