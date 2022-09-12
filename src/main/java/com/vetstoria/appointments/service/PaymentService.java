@@ -1,9 +1,11 @@
 package com.vetstoria.appointments.service;
 
+import com.vetstoria.appointments.model.dto.PaymentDto;
+import com.vetstoria.appointments.model.dto.RefundDto;
 
-import com.vetstoria.appointments.model.request.PaymentRequest;
-import com.vetstoria.appointments.model.response.PaymentResponse;
+public interface PaymentService {
 
-public interface PaymentService<T extends PaymentRequest, R extends PaymentResponse> {
-    R pay(T request);
+    PaymentDto pay(PaymentDto paymentRequest);
+
+    RefundDto refund(RefundDto refundDto);
 }

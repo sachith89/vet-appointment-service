@@ -1,13 +1,8 @@
 package com.vetstoria.appointments.controller;
 
-import com.vetstoria.appointments.model.request.AppointmentRequest;
-import com.vetstoria.appointments.model.request.PaymentRequest;
-import com.vetstoria.appointments.model.request.ProviderOnePaymentRequest;
-import com.vetstoria.appointments.model.response.PaymentResponse;
-import com.vetstoria.appointments.paymentgateway.gateway.PaymentGateway;
+import com.vetstoria.appointments.model.dto.AppointmentDto;
 import com.vetstoria.appointments.service.AppointmentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/appointments")
@@ -24,8 +20,9 @@ public class AppointmentController {
     private final AppointmentService appointmentService;
 
     @PostMapping("/")
-    public ResponseEntity<AppointmentRequest> saveAppointment(@RequestBody @Valid AppointmentRequest appointmentDTO) {
-        return new ResponseEntity(appointmentService.save(appointmentDTO), HttpStatus.CREATED);
+    public ResponseEntity<AppointmentDto> saveAppointment(@RequestBody @Valid AppointmentDto appointmentDTO) {
+        appointmentDTO.setAppointmentId(UUID.randomUUID().toString());
+        return ResponseEntity.ok(appointmentService.save(appointmentDTO));
     }
 
 
@@ -33,7 +30,6 @@ public class AppointmentController {
     //TODO: cancel appointments
     //TODO: get all appointments
     //TODO: get single appointments
-
 
 
 }

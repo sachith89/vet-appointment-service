@@ -1,8 +1,8 @@
 package com.vetstoria.appointments.service;
 
-import com.vetstoria.appointments.model.request.AppointmentRequest;
+import com.vetstoria.appointments.model.dto.AppointmentDto;
 
 public interface AppointmentService {
 
-    AppointmentRequest save(AppointmentRequest appointmentDTO);
+    AppointmentDto save(AppointmentDto appointmentDTO);
 }

@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @SpringBootApplication
-@EntityScan(basePackages = "com.vestoria.appointments.model.entity")
+@EntityScan(basePackages = "com.vetstoria.appointments.model.entity")
 public class MainApplication {
 
     public static void main(String[] args) {

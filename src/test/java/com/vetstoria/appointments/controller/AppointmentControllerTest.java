@@ -3,9 +3,7 @@ package com.vetstoria.appointments.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.vetstoria.appointments.model.request.AppointmentRequest;
-import com.vetstoria.appointments.model.request.ClientRequest;
-import com.vetstoria.appointments.model.request.PetRequest;
+import com.vetstoria.appointments.model.dto.AppointmentDto;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -40,22 +38,8 @@ class AppointmentControllerTest {
     @Test
     @DisplayName("Should Return Error Message When Email Is Incorrect")
     public void shouldReturnErrorMessageWhenEmailIsIncorrect() throws Exception {
-        PetRequest petDTO = PetRequest.builder()
-                .petName("Rocky")
-                .breed("Great Dane")
-                .age(2)
-                .build();
 
-        ClientRequest clientDTO = ClientRequest.builder()
-                .firstName("Sachith")
-                .lastName("Lakmal")
-                .email("sachith#gmail.com")
-                .contactNo("0771176372")
-                .build();
-
-        AppointmentRequest appointmentDTO = AppointmentRequest.builder()
-                .client(clientDTO)
-                .pet(petDTO)
+        AppointmentDto appointmentDTO = AppointmentDto.builder()
                 .build();
 
 

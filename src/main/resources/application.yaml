@@ -45,6 +45,9 @@ management.endpoint.metrics.enabled: true
 management.endpoint.prometheus.enabled: true
 management.endpoints.web.exposure.include: prometheus,metrics
 
+kafka:
+  bootstrap-servers: localhost:9092
+
 #logging.level.com.zaxxer.hikari.HikariConfig: DEBUG
 #logging.level.com.zaxxer.hikari: TRACE
 
